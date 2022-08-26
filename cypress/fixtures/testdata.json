@@ -1,4 +1,9 @@
 {
+  "baseUrl":"https://www.etsy.com/",
+  "new_Email":"testing2@gmail.com",
+  "new_UserName":"peter",
+  "new_Password":"mubb@$hir",
+
   "email_1":"testing1@10pearls.com",
   "email_2":"testing2@10pearls.com",
   "email_3":"testing3@10pearls.com",
