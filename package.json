@@ -1,0 +1,26 @@
+{
+  "name": "tenpearls-assesment-cypress",
+  "version": "1.0.0",
+  "description": "Automation Assesment task from 10Pearls.",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run-dashboard": "npx cypress run --record --key 513b33a4-93a2-4213-a75d-e988180e8a69",
+    "cy:update-snapshots" :"cypress run --env updateSnapshots=true"
+  },
+  "keywords": [
+    "Automation",
+    "Assesments",
+    "task",
+    "cypress",
+    "10Pearls"
+  ],
+  "author": "Mubbashir Shakil, mshakil74@gmail.com, 92334-3074528",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^10.6.0",
+    "cypress-image-snapshot": "^4.0.1",
+    "prettier": "^2.7.1"
+  }
+}
