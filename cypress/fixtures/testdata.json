@@ -8,5 +8,8 @@
   "email_2":"testing2@10pearls.com",
   "email_3":"testing3@10pearls.com",
   
-  "password_1":"l0ginpa5sword"
+  "password_1":"l0ginpa5sword",
+
+  "productLink":"",
+  "productTitle":""
 }

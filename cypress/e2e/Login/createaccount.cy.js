@@ -6,8 +6,11 @@ import ProductDashboard from '../../page-objects/pages/productdashboard'
 describe('Verify Required Fields Of Create Account',() =>{
     
     before(function(){
+        cy.fixture('testdata').then(webUrl => {
+            const url = webUrl.baseUrl;
+            cy.visit(url);
+        })
         
-        cy.visit(url);
         CreateAccount.clickSignIn();
         CreateAccount.clickRegisterButton();
     })
@@ -21,23 +24,17 @@ describe('Verify Required Fields Of Create Account',() =>{
     })
 
     it('Should verify that Register Button Is Enable When All Fields Are Not Empty',() =>{
-        cy.fixture('testdata').then(webUrl=>{
-            
-            
 
+        cy.fixture('testdata').then(userData => {
+            const email = userData.new_Email;
+            const name = userData.new_UserName;
+            const password = userData.new_Password;
+            
+            CreateAccount.enterEmail(email);
+            CreateAccount.enterFirstName(name);
+            CreateAccount.enterPassword(password);
+            CreateAccount.verifyRegistrationButtonIsEnabled();
         })
-            
-            
-        
-
-
-
-        CreateAccount.enterEmail(new_Email);
-        CreateAccount.enterFirstName(new_UserName);
-        CreateAccount.enterPassword(new_Password);
-
-
-        CreateAccount.verifyRegistrationButtonIsEnabled();
     })
 })
 
@@ -45,7 +42,11 @@ describe('Create Account On Etsy',() =>{
     
     it('Should Create Account On Etsy Successfully!', () =>{
         CreateAccount.clickCreateAccountButton();
-        ProductDashboard.VerifyAccountCreatedSuccessfully(new_UserName);
+
+        cy.fixture('testdata').then(userData => {
+            const name = userData.new_UserName;
+            ProductDashboard.VerifyAccountCreatedSuccessfully(name);
+        })
     })
 })
 
