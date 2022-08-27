@@ -36,4 +36,19 @@ describe("Verify Failed Login Functionality", ()=> {
         });
     })
 
+    it("Should Show Validation Error Message that Email Is Invalid", ()=>{
+
+        cy.fixture('testdata').then(dataset =>{
+            const userName = dataset.email_2;
+            const pwd = dataset.password_1;
+            const validationMsg = dataset.invalidEmail;
+
+            CreateAccount.enterEmail(userName);
+            CreateAccount.enterPassword(pwd);
+            CreateAccount.clickLoginButton();
+
+            BasePage.verifyValidationErrorMessage(validationMsg);
+        });
+    })
+
 })

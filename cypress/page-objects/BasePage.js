@@ -1,3 +1,4 @@
+/// <reference types="cypress-xpath" />
 export default class BasePage{
     static pause(ms){
         cy.wait(ms);
@@ -8,8 +9,7 @@ export default class BasePage{
     }
 
     static verifyValidationErrorMessage(errorMessage){
-        //cy.get("//div[contains(@class,'wt-validation__message')][not(contains(@class,'--is-hidden'))]").should('have.text'.message);
-
-        cy.get('div.wt-validation__message').filter(':visible').should('have.text',errorMessage);
+        
+        cy.get("div[class*='wt-validation__message']:not([class*='--is-hidden'])").should('have.text',errorMessage);
     }
 }

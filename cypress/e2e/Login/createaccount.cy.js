@@ -2,7 +2,8 @@
 import CreateAccount from '../../page-objects/pages/createaccount'
 import ProductDashboard from '../../page-objects/pages/productdashboard'
 
-
+// ISSUE OCCURRING WHILE CREATING NEW ACCOUNT.
+// WEBSITE ISSUE
 describe('Verify Required Fields Of Create Account',() =>{
     
     before(function(){

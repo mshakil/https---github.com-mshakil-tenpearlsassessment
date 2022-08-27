@@ -4,7 +4,7 @@
   "new_UserName":"peter",
   "new_Password":"mubb@$hir",
 
-  "email_1":"testing1@10pearls.com",
+  "email_1":"helloWorld",
   "email_2":"testing2@10pearls.com",
   "email_3":"testing3@10pearls.com",
   
@@ -17,5 +17,6 @@
   "productToSearch":"Handmade Gifts",
 
   "emailFieldEmptyMessage": "Email can't be blank.",
-  "incorrectPassword":"Password was incorrect"
+  "incorrectPassword":"Password was incorrect",
+  "invalidEmail": "Email address is invalid."
 }
