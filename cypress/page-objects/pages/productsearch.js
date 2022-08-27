@@ -10,14 +10,14 @@ export default class ProductSearch extends BasePage{
         cy.get("button[aria-label='Search']").click();
     }
 
-    static verifySearchedProductReturnSuccessfull(){
-        cy.get("div.v2-listing-card__img").eq(0).should('be.visible');
+    static verifySearchedProductReturnSuccessfull(productIndex){
+        cy.get("div.v2-listing-card__img").eq(productIndex).should('be.visible');
     }
 
-    static getProductCardTitle(){
+    static getProductCardTitle(productIndex){
 
         cy.fixture('testdata').then(title=>{
-            cy.get('h3.v2-listing-card__title').eq(0).then(function($elem){
+            cy.get('h3.v2-listing-card__title').eq(productIndex).then(function($elem){
                 cy.log($elem.text());
                 title.productTitle = $elem.text().trim().toString();
 
@@ -29,8 +29,8 @@ export default class ProductSearch extends BasePage{
         })
     }
 
-    static getProductLinkAndNavigateToProductPage(){
-        cy.get("a.listing-link").should('have.attr','href').then((href)=>{
+    static getProductLinkAndNavigateToProductPage(productIndex){
+        cy.get("a.listing-link").eq(productIndex).should('have.attr','href').then((href)=>{
             this.logInfo(href);
             cy.visit(href);
         })

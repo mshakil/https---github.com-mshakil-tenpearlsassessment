@@ -7,7 +7,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "cy:run-dashboard": "npx cypress run --record --key 513b33a4-93a2-4213-a75d-e988180e8a69",
-    "cy:update-snapshots" :"cypress run --env updateSnapshots=true"
+    "cy:update-snapshots": "cypress run --env updateSnapshots=true"
   },
   "keywords": [
     "Automation",
@@ -22,5 +22,8 @@
     "cypress": "^10.6.0",
     "cypress-image-snapshot": "^4.0.1",
     "prettier": "^2.7.1"
+  },
+  "devDependencies": {
+    "cypress-xpath": "^2.0.1"
   }
 }

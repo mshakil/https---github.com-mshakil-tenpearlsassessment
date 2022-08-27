@@ -1,15 +1,39 @@
 import {url} from '../../../config';
-import CreateAccount from '../page-objects/pages/createaccount'
+import BasePage from '../../page-objects/BasePage';
+import CreateAccount from '../../page-objects/pages/createaccount'
 
-describe("Verify User Should Login To Application", ()=> {
+describe("Verify Failed Login Functionality", ()=> {
 
-    before(function(){
+    beforeEach(function(){
         cy.visit(url);
         CreateAccount.clickSignIn();
     })
-    it("Should Login To Application Successfully", ()=>{
+    it("Should Show Validation Error Message that Email Field Can't Be Empty", ()=>{
 
-CreateAccount.enterEmail(new_Email);
-CreateAccount.enterPassword()
+        cy.fixture('testdata').then(dataset =>{
+            const pwd = dataset.password_1;
+            const validationMsg = dataset.emailFieldEmptyMessage;
+
+            CreateAccount.enterPassword(pwd);
+            CreateAccount.clickLoginButton();
+
+            BasePage.verifyValidationErrorMessage(validationMsg);
+        });
     })
+
+    it("Should Show Validation Error Message that Password Is Incorrect", ()=>{
+
+        cy.fixture('testdata').then(dataset =>{
+            const userName = dataset.email_1;
+            const pwd = dataset.password_1;
+            const validationMsg = dataset.incorrectPassword;
+
+            CreateAccount.enterEmail(userName);
+            CreateAccount.enterPassword(pwd);
+            CreateAccount.clickLoginButton();
+
+            BasePage.verifyValidationErrorMessage(validationMsg);
+        });
+    })
+
 })

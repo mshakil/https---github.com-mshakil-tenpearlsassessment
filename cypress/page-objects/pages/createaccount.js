@@ -28,6 +28,11 @@ export default class CreateAccount extends BasePage{
         this.logInfo("Adding wait for navigation");
     }
 
+    static clickLoginButton(){
+        cy.get("button[value='sign-in']").click();
+        BasePage.pause(3000);
+    }
+
     static closeCreateAccountDialog(){
         cy.get("span[aria-label='Close']").click();
     }

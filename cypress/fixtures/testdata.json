@@ -11,5 +11,11 @@
   "password_1":"l0ginpa5sword",
 
   "productLink":"",
-  "productTitle":""
+  "productTitle":"",
+
+  "productToSelectFromSearch":3,
+  "productToSearch":"Handmade Gifts",
+
+  "emailFieldEmptyMessage": "Email can't be blank.",
+  "incorrectPassword":"Password was incorrect"
 }
