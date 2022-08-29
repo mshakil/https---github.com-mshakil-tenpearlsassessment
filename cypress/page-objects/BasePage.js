@@ -12,6 +12,6 @@ export default class BasePage{
     }
 
     static verifyValidationErrorMessage(errorMessage){
-        cy.get("div[class*='wt-validation__message']:not([class*='--is-hidden'])").should('have.text',errorMessage);
+        cy.get("div.alert-danger li").should('have.text',errorMessage);
     }
 }

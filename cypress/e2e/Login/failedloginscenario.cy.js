@@ -1,21 +1,25 @@
-import {url} from '../../../config';
 import BasePage from '../../page-objects/BasePage';
 import CreateAccount from '../../page-objects/pages/createaccount'
+import LoginPage from '../../page-objects/pages/loginaccount'
 
 describe("Verify Failed Login Functionality", ()=> {
 
     beforeEach(function(){
-        cy.visit(url);
-        CreateAccount.clickSignIn();
+        cy.fixture('testdata').then(webUrl => {
+            const url = webUrl.baseUrl;
+            cy.visit(url);            
+            CreateAccount.clickSignIn();
+        })
     })
+
     it("Should Show Validation Error Message that Email Field Can't Be Empty", ()=>{
 
         cy.fixture('testdata').then(dataset =>{
-            const pwd = dataset.password_1;
+            const password = dataset.userInfo.customerPassword;;
             const validationMsg = dataset.emailFieldEmptyMessage;
 
-            CreateAccount.enterPassword(pwd);
-            CreateAccount.clickLoginButton();
+            LoginPage.enterPassword(password);
+            LoginPage.clickLoginButton();
 
             BasePage.verifyValidationErrorMessage(validationMsg);
         });
@@ -24,28 +28,13 @@ describe("Verify Failed Login Functionality", ()=> {
     it("Should Show Validation Error Message that Password Is Incorrect", ()=>{
 
         cy.fixture('testdata').then(dataset =>{
-            const userName = dataset.email_1;
-            const pwd = dataset.password_1;
+            const email = dataset.userInfo.customerEmail;
+            const pwd = dataset.wrongPassword;
             const validationMsg = dataset.incorrectPassword;
 
-            CreateAccount.enterEmail(userName);
-            CreateAccount.enterPassword(pwd);
-            CreateAccount.clickLoginButton();
-
-            BasePage.verifyValidationErrorMessage(validationMsg);
-        });
-    })
-
-    it("Should Show Validation Error Message that Email Is Invalid", ()=>{
-
-        cy.fixture('testdata').then(dataset =>{
-            const userName = dataset.email_2;
-            const pwd = dataset.password_1;
-            const validationMsg = dataset.invalidEmail;
-
-            CreateAccount.enterEmail(userName);
-            CreateAccount.enterPassword(pwd);
-            CreateAccount.clickLoginButton();
+            LoginPage.enterEmail(email);
+            LoginPage.enterPassword(pwd);
+            LoginPage.clickLoginButton();
 
             BasePage.verifyValidationErrorMessage(validationMsg);
         });

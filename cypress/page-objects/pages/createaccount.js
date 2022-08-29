@@ -93,11 +93,5 @@ export default class CreateAccount extends BasePage{
         cy.get("div.header_user_info span").then($elem =>{
             expect($elem.text().trim()).to.contains(costumerName);
         })
-    }
-    
-    static verifyNewAccountMessage(message){
-        cy.get("p.info-account").then($elem =>{
-            expect(message).to.contains($elem.text().trim());
-        })
-    }
+    }    
 }
