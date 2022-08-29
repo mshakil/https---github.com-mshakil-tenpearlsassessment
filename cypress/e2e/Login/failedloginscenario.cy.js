@@ -50,5 +50,4 @@ describe("Verify Failed Login Functionality", ()=> {
             BasePage.verifyValidationErrorMessage(validationMsg);
         });
     })
-
 })
