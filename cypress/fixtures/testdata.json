@@ -1,6 +1,27 @@
 {
-  "baseUrl":"https://www.etsy.com/",
-  "new_Email":"testing2@gmail.com",
+  "baseUrl":"http://automationpractice.com/index.php/",
+
+  "userInfo":{
+    "gender":"1",
+    "customerFirstName": "automation",
+    "customerLastName":"tester",
+    "customerEmail":"automation_user5@outlook.com",
+    "customerPassword":"@utoMati0n",
+    "DOB": {
+      "date":"4",
+      "month":"6",
+      "year":"1992"
+    },
+    "company":"10Pearls",
+    "address":"Fake address",
+    "city":"Atlanta",
+    "state":"10",
+    "zipCode":"82452",
+    "mobilePhone":"+14224333",
+    "aliasAddress":"FAKE Address 2",
+    "successAccountMessage": "Welcome to your account."
+  },
+  "new_Email":"testing3@gmail.com",
   "new_UserName":"peter",
   "new_Password":"mubb@$hir",
 

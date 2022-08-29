@@ -3,6 +3,10 @@ export default class BasePage{
         cy.wait(ms);
     }
 
+    static waitUntil(selector){
+        cy.wait()
+    }
+
     static logInfo(message){
         cy.log(message);
     }

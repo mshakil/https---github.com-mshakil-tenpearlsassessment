@@ -2,74 +2,102 @@ import BasePage from "../BasePage";
 
 export default class CreateAccount extends BasePage{
     static clickSignIn(){
-        cy.get("button.select-signin").click();
+        cy.get("div.header_user_info a.login").click();
     }
 
     static clickRegisterButton(){
-        cy.get("button.select-register").click();
+        cy.get("button#SubmitCreate").click();
     }
 
-    static enterEmail(mailAddress){
-        cy.get("input[id='join_neu_email_field']").clear().type(mailAddress);
+    static enterMailForCreateAccount(mailAddress){
+        cy.get("input#email_create").clear().type(mailAddress);
     }
 
-    static enterFirstName(firstName){
-        cy.get("input[id='join_neu_first_name_field']").clear().type(firstName);
+    static selectGender(genderVal){
+        cy.get("input[name='id_gender']").check(genderVal);
+    }
+
+    static enterCustomerFirstName(firstName){
+        cy.get("input[id='customer_firstname']").clear().type(firstName);
+        BasePage.pause(500);
+    }
+
+    static enterCustomerLastName(lastName){
+        cy.get("input[id='customer_lastname']").clear().type(lastName);
+        BasePage.pause(500);
     }
 
     static enterPassword(password){
-        cy.get("input[id='join_neu_password_field']").clear().type(password);
+        cy.get("input#passwd").clear().type(password);
+        BasePage.pause(500);
     }
 
-    static clickCreateAccountButton(){
-        cy.get("button[value='register']").click();
-        
-        this.pause(5000);
-        this.logInfo("Adding wait for navigation");
+    static selectDateOfBirth(date,month,year){
+        cy.get("select#days").select(date);
+        cy.get("select#months").select(month);
+        cy.get("select#years").select(year);
+        BasePage.pause(500);
     }
 
-    static clickLoginButton(){
-        cy.get("button[value='sign-in']").click();
-        BasePage.pause(3000);
+    static enterFirstName(firstName){
+        cy.get("input#firstname").clear().type(firstName);
+        BasePage.pause(500);
     }
 
-    static closeCreateAccountDialog(){
-        cy.get("span[aria-label='Close']").click();
+    static enterLastName(lastName){
+        cy.get("input#lastname").clear().type(lastName);
+        BasePage.pause(500);
     }
 
-   
-    static verifyInputFieldIsEmpty(fieldName)
-    {
-        
-        switch(fieldName){
-            case "email":
-                cy.isEmpty("input[id='join_neu_email_field']");
-                break;
-
-            case "firstname":
-                cy.isEmpty("input[id='join_neu_first_name_field']");
-                break;
-            case "password":
-                cy.isEmpty("input[id='join_neu_password_field']");
-                break;
-            default:{
-                cy.isEmpty("input[id='join_neu_email_field']");
-                cy.isEmpty("input[id='join_neu_first_name_field']");
-                cy.isEmpty("input[id='join_neu_password_field']");
-            }
-            break;
-        }
+    static enterCompanyName(company){
+        cy.get("input#company").clear().type(company);
+        BasePage.pause(500);
     }
 
+    static enterAddress(address){
+        cy.get("input#address1").clear().type(address);
+        BasePage.pause(500);
+    }
+
+    static enterCity(city){
+        cy.get("input#city").clear().type(city);
+        BasePage.pause(500);
+    }
+
+    static enterState(state){
+        cy.get("select#id_state").select(state);
+        BasePage.pause(500);
+    }
+
+    static EnterpostCode(postal){
+        cy.get("input#postcode").clear().type(postal);
+        BasePage.pause(500);
+    }
+
+    static enterPhoneNumber(phoneNum){
+        cy.get("input#phone_mobile").clear().type(phoneNum);
+        BasePage.pause(500);
+    }
     
-
-    static verifyRegisterButtonIsDisabled(){
-        cy.isDisable("button[value='register']")
+    static enterAliasAddress(alias){
+        cy.get("input#alias").clear().type(alias);
+        BasePage.pause(500);
     }
 
-    static verifyRegistrationButtonIsEnabled(){
-        cy.isEnable("button[value='register']")
+    static clickCreateAccount(){
+        cy.get("button#submitAccount").click();
+        BasePage.pause(500);
     }
 
-    static getErrorMessage
+    static verifyNewAccountIsCreatedSuccessfull(costumerName){
+        cy.get("div.header_user_info span").then($elem =>{
+            expect($elem.text().trim()).to.contains(costumerName);
+        })
+    }
+    
+    static verifyNewAccountMessage(message){
+        cy.get("p.info-account").then($elem =>{
+            expect(message).to.contains($elem.text().trim());
+        })
+    }
 }

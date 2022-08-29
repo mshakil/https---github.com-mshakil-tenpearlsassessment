@@ -1,53 +1,68 @@
-
 import CreateAccount from '../../page-objects/pages/createaccount'
-import ProductDashboard from '../../page-objects/pages/productdashboard'
+import UserDashboard from '../../page-objects/pages/userdashboard'
 
 // ISSUE OCCURRING WHILE CREATING NEW ACCOUNT.
 // WEBSITE ISSUE
-describe('Verify Required Fields Of Create Account',() =>{
+describe('Verify Creation of NEW ACCOUNT',() =>{
     
     before(function(){
         cy.fixture('testdata').then(webUrl => {
             const url = webUrl.baseUrl;
-            cy.visit(url);
+            cy.visit(url);            
         })
-        
+    })
+
+    it('Should Create new account successfully',() =>{
+        //  CLICK ON SIGN IN BUTTON
         CreateAccount.clickSignIn();
-        CreateAccount.clickRegisterButton();
-    })
+        
+        cy.fixture('testdata').then(createUserInfo=>{
+            const gender = createUserInfo.userInfo.gender;
+            const firstName = createUserInfo.userInfo.customerFirstName;
+            const lastName = createUserInfo.userInfo.customerLastName;
+            const email = createUserInfo.userInfo.customerEmail;
+            const password = createUserInfo.userInfo.customerPassword;
+            const birthDate = createUserInfo.userInfo.DOB.date;
+            const birthMonth = createUserInfo.userInfo.DOB.month;
+            const birthYear = createUserInfo.userInfo.DOB.year;
+            const company = createUserInfo.userInfo.company;
+            const address = createUserInfo.userInfo.address;
+            const city = createUserInfo.userInfo.city;
+            const state = createUserInfo.userInfo.state;
+            const zipcode = createUserInfo.userInfo.zipCode;
+            const mobile = createUserInfo.userInfo.mobilePhone;
+            const aliasAddress = createUserInfo.userInfo.aliasAddress;
+            const successMessage = createUserInfo.userInfo.successAccountMessage;
 
-    it('Should verify that Register Button Is Disable When All Fields Are Empty',() =>{
-        CreateAccount.verifyInputFieldIsEmpty("All")
-        CreateAccount.logInfo("Verifying that all input fields are empty");
+            //  ENTER EMAIL ADDRESS AND CLICK CREATE BUTTON 
+            CreateAccount.enterMailForCreateAccount(email);
+            CreateAccount.clickRegisterButton();
+          
+            //  FILL USER CREATION FORM
+            CreateAccount.selectGender(gender);
+            CreateAccount.enterCustomerFirstName(firstName);
+            CreateAccount.enterCustomerLastName(lastName);
 
-        CreateAccount.verifyRegisterButtonIsDisabled();
-        CreateAccount.logInfo("Verifying that Register button is disable.");
-    })
-
-    it('Should verify that Register Button Is Enable When All Fields Are Not Empty',() =>{
-
-        cy.fixture('testdata').then(userData => {
-            const email = userData.new_Email;
-            const name = userData.new_UserName;
-            const password = userData.new_Password;
-            
-            CreateAccount.enterEmail(email);
-            CreateAccount.enterFirstName(name);
             CreateAccount.enterPassword(password);
-            CreateAccount.verifyRegistrationButtonIsEnabled();
+            CreateAccount.selectDateOfBirth(birthDate,birthMonth,birthYear);
+            CreateAccount.enterFirstName(firstName);
+
+            CreateAccount.enterLastName(lastName);
+            CreateAccount.enterCompanyName(company);
+            CreateAccount.enterAddress(address);
+
+            CreateAccount.enterCity(city);
+            CreateAccount.enterState(state);
+            CreateAccount.EnterpostCode(zipcode);
+
+            CreateAccount.enterPhoneNumber(mobile);
+            CreateAccount.enterAliasAddress(aliasAddress);
+
+            CreateAccount.clickCreateAccount();
+
+            UserDashboard.verifyNewAccountIsCreatedSuccessfull(firstName+" "+lastName);
         })
     })
 })
 
-describe('Create Account On Etsy',() =>{
-    
-    it('Should Create Account On Etsy Successfully!', () =>{
-        CreateAccount.clickCreateAccountButton();
-
-        cy.fixture('testdata').then(userData => {
-            const name = userData.new_UserName;
-            ProductDashboard.VerifyAccountCreatedSuccessfully(name);
-        })
-    })
-})
 
