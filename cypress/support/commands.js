@@ -57,6 +57,16 @@ Cypress.Commands.add('isNotEmpty',(selector,text )=> {
     cy.get(selector,{ timeout: 10000 }).should('have.text',text);
 })
 
-Cypress.Commands.add('login', (userName,password) =>{
+Cypress.Commands.add('login', (email,password) =>{
+    //  Click Sign button
+    cy.get("div.header_user_info a.login").click();
 
+    //  Enter email
+    cy.get("input[id='email']").clear().type(email);
+
+    //  Enter password
+    cy.get("input[id='passwd']").clear().type(password);
+
+    //  Click Submit Button
+    cy.get("button[id='SubmitLogin']").click();
 })

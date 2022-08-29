@@ -30,16 +30,27 @@ export default class AddToBasket extends BasePage{
 
     static clickAddToBasketButton(){
         BasePage.pause(1000);
-        cy.get("div[data-selector='add-to-cart-button'] button").scrollIntoView().click({force:true});
+        //cy.get("p[id='add_to_cart'] button").click();
+        cy.get("p[id='add_to_cart'] button").then(($elem)=>{
+            $elem.get(0).click();
+        })
     }
 
-    static verifyProductIsAddedSuccessfully(noOfItem){
-        BasePage.pause(2000);
-        cy.get('h1.wt-text-heading-01').then(function($elem){
-            const expectedMessage = noOfItem +" item in your basket";
+    static verifyProductIsAddedSuccessfully(productMessage,productQuantity){
+        BasePage.pause(4000);
+        cy.get('div.layer_cart_product h2').then(function($elem){
             BasePage.logInfo(expectedMessage);
-            expect($elem.text().trim()).to.contains(expectedMessage);
+            expect($elem.text().trim()).to.contains(productMessage);
         })
+
+        cy.get("span[id='layer_cart_product_quantity']").then(function($elem){
+            BasePage.logInfo(expectedMessage);
+            expect($elem.text().trim()).to.contains(productQuantity);
+        })
+    }
+
+    static clickProceedToCheckOutButton(){
+        cy.get("a[title='Proceed to checkout']").click();
     }
 
     static clickRemoveProductFromBasket(){

@@ -24,5 +24,10 @@
   "wrongPassword":"l0ginpa5sword",
 
   "emailFieldEmptyMessage": "An email address required.",
-  "incorrectPassword":"Authentication failed."
+  "incorrectPassword":"Authentication failed.",
+  "productToSearch": "Dress",
+  "productToSelectFromSearch": "1",
+  "productSuccfullyAdded":"Product successfully added to your shopping cart",
+  "productQuantity" : "1"
+
 }
